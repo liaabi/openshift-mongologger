@@ -44,7 +44,7 @@ def log_list():
 def logfunction():
   logger.info('Start logging')
   while 1:
-    mongo_db.logs.save({"id" : count, "tag" : "heartbeat", "timestamp" : ti$
+    mongo_db.logs.save({"id" : count, "tag" : "heartbeat", "timestamp" : time.time(), "host": ipaddr})
     count+=1
     time.sleep(5)
 

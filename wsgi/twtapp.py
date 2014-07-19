@@ -27,9 +27,9 @@ ipaddr=netifaces.ifaddresses('eth0')[netifaces.AF_INET][0]['addr']
 
 def log_list():
   l = []
-  for u in mongo_db.logs.find().sort({'timestamp':-1}).limit(30):
+  for u in mongo_db.logs.find().sort({'timestamp', pymongo.DESCENDING}).limit(30):
     l.append(u)
-  l.sort()
+  #l.sort()
   return l
 
 def logfunction():
@@ -43,10 +43,6 @@ bottle.TEMPLATE_PATH.append(os.path.join(os.environ['OPENSHIFT_REPO_DIR'],
 
 
 @bottle.route('/')
-def in  session = get_session()
-    bottle.redirect('/home')
-
-@bottle.route('/home')
 def home():
   #for post_id in loglist['timeline']:
    # post = post_find_by_id(post_id)
@@ -54,6 +50,7 @@ def home():
     #  postlist.insert(0, post)
 
   # bottle.TEMPLATES.clear()
+  logfunction()
   return bottle.template('timeline',
                          loglist=log_list(),
                          page='timeline')

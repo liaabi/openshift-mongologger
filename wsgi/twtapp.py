@@ -7,6 +7,7 @@ import bottle
 import pymongo
 import time
 import netifaces
+import logging
 
 bottle.debug(True)
 
@@ -22,6 +23,14 @@ mongo_db = mongo_client [os.environ['OPENSHIFT_APP_NAME']]
 mongo_db.authenticate(os.environ['OPENSHIFT_MONGODB_HA_DB_USERNAME'],
                       os.environ['OPENSHIFT_MONGODB_HA_DB_PASSWORD'])
 
+logger = logging.getLogger('myapp')
+hdlr = logging.FileHandler(os.environ['OPENSHIFT_APP_REPO]'+ '/myapp.log')
+formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
+hdlr.setFormatter(formatter)
+logger.addHandler(hdlr) 
+logger.setLevel(logging.WARNING)
+logger.info('connection ')
+logger.info('is' + mongo_db)
 count=0
 ipaddr=netifaces.ifaddresses('eth0')[netifaces.AF_INET][0]['addr']
 
@@ -33,6 +42,7 @@ def log_list():
   return l
 
 def logfunction():
+  logger.info('Start logging')
   while 1:
     mongo_db.logs.save({"id" : count, "tag" : "heartbeat", "timestamp" : ti$
     count+=1
@@ -50,6 +60,7 @@ def home():
     #  postlist.insert(0, post)
 
   # bottle.TEMPLATES.clear()
+  logger.info('in Home')
   logfunction()
   return bottle.template('timeline',
                          loglist=log_list(),

@@ -24,7 +24,7 @@ mongo_db.authenticate(os.environ['OPENSHIFT_MONGODB_HA_DB_USERNAME'],
                       os.environ['OPENSHIFT_MONGODB_HA_DB_PASSWORD'])
 
 logger = logging.getLogger('myapp')
-hdlr = logging.FileHandler(os.environ['OPENSHIFT_APP_REPO]'+ '/myapp.log')
+hdlr = logging.FileHandler(os.environ['OPENSHIFT_DATA_DIR ']+ '/myapp.log')
 formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
 hdlr.setFormatter(formatter)
 logger.addHandler(hdlr) 

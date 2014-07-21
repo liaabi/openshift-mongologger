@@ -7,6 +7,9 @@
 		<link rel="stylesheet"
 		      href="/static/retwis-py.css"
 		      type="text/css" media="screen" />
+		 <link rel="stylesheet"
+                      href="/static/styles.css"
+                      type="text/css" media="screen" />
 	</head>
 	<body class="{{header}}">
 		%include shared/nav.tpl logged=logged

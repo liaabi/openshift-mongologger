@@ -49,7 +49,8 @@ def logfunction(count):
   #logger.info('Start logging')
   mongo_db.logs.save({"id" : count, "tag" : "heartbeat", "timestamp" : time.time(), "host": ipaddr})
   count+=1
-  #time.sleep(5)
+  timer = Timer(2, logfunction(count), ())
+  timer.start()
 
 bottle.TEMPLATE_PATH.append(os.path.join(os.environ['OPENSHIFT_REPO_DIR'],
                                          'wsgi', 'views'))
@@ -71,4 +72,3 @@ application = bottle.default_app()
 logger.info('Start logging')
 count = 0
 Timer(2, logfunction(count), ()).start()
-

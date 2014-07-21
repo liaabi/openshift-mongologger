@@ -40,7 +40,7 @@ ipaddr=netifaces.ifaddresses('eth0')[netifaces.AF_INET][0]['addr']
 
 def log_list():
   l = []
-  for u in mongo_db.logs.find().sort([('timestamp', 1)]).limit(30):
+  for u in mongo_db.logs.find().sort([('timestamp', -1)]).limit(30):
     l.append(u)
   #l.sort()
   return l

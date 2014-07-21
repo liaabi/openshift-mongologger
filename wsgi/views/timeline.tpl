@@ -1,14 +1,24 @@
-%#list of currents posts
-%include shared/header.tpl header=page,logged=logged
+%#list of currents logs
+%include shared/header.tpl header=page,logged=1
 <div id="main">
-%include shared/form.tpl
-	
-	<div class="tweets">
-	%for tweet in postlist:
-		<p><img src="/static/avatar.png" /> <strong><a href="/{{tweet['uid']}}">{{tweet['uid']}}</a></strong> {{tweet['content']}}<span><a href="/{{tweet['uid']}}/statuses/{{tweet['_id']}}">permalink</a></span></p>
-	%end
-	</div>
+         <table id="twtable" class="sortable" cellspacing="0"
+               summary="Last logs">
+        <tr>
+             <th scope="col" abbr="timeline" class="nobackground">timeline</th>
+             <th scope="col" abbr="@when">Timestamp</th>
+             <th scope="col" abbr="tag">Tag</th>
+             <th scope="col" abbr="@who">Host Ip</th>
+           </tr>
+
+%import time
+	%for log in loglist:
+                <tr id='tweetrow'>
+                <td class='when' colspan='2'>{{log['timestamp']}}</td>
+                <td class='searchtag'> {{log['tag']}}</td>
+                <td class='who'> {{log['host']}}</td>
+                </tr>
+        %end
+
+</table>
 </div>
-%include shared/side.tpl username=username,userlist=userlist
-	
-%include shared/footer.tpl
+

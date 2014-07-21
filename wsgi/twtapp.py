@@ -46,11 +46,18 @@ def log_list():
   return l
 
 def logfunction(count):
-  #logger.info('Start logging')
   mongo_db.logs.save({"id" : count, "tag" : "heartbeat", "timestamp" : time.time(), "host": ipaddr})
   count+=1
-  timer = Timer(2, logfunction(count), ())
-  timer.start()
+
+def set_interval(func, arg, sec):
+    def func_wrapper():
+        set_interval(func, arg, sec)
+        func(arg)
+    t = threading.Timer(sec, func_wrapper)
+    t.start()
+    return t
+
+
 
 bottle.TEMPLATE_PATH.append(os.path.join(os.environ['OPENSHIFT_REPO_DIR'],
                                          'wsgi', 'views'))
@@ -71,4 +78,8 @@ def home():
 application = bottle.default_app()
 logger.info('Start logging')
 count = 0
-Timer(2, logfunction(count), ()).start()
+try:
+    t=set_interval(logfunction, 0, 1)
+except (KeyboardInterrupt, SystemExit):
+    cleanup_stop_thread();
+    sys.exit()

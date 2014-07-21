@@ -12,8 +12,9 @@
 
 %import time
 	%for log in loglist:
-                <tr id='tweetrow'>
-                <td class='when' colspan='2'>{{log['timestamp']}}</td>
+               %thetime = time.strftime("%m/%d/%Y %H:%M:%S", time.localtime(log['timestamp']))
+		 <tr id='tweetrow'>
+                <td class='when' colspan='2'>{{thetime}}</td>
                 <td class='searchtag'> {{log['tag']}}</td>
                 <td class='who'> {{log['host']}}</td>
                 </tr>

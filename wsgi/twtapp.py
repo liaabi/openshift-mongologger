@@ -63,14 +63,12 @@ def home():
     #  postlist.insert(0, post)
 
   # bottle.TEMPLATES.clear()
-  logger.info('in Home')
-  #logfunction()
-  logger.info('Start logging')
-  count = 0
-  Timer(2, logfunction(count), ()).start()
   return bottle.template('timeline',
                          loglist=log_list(),
                          page='timeline')
 
 application = bottle.default_app()
+logger.info('Start logging')
+count = 0
+Timer(2, logfunction(count), ()).start()
 

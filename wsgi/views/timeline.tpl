@@ -14,7 +14,7 @@
 	%for log in loglist:
                %thetime = time.strftime("%m/%d/%Y %H:%M:%S", time.localtime(log['timestamp']))
 		 <tr id='tweetrow'>
-                <td class='when' colspan='2'>{{thetime}}</td>
+                <td class='when' colspan='2' sorttable_customkey='{{thetime}}'>{{thetime}}</td>
                 <td class='searchtag'> {{log['tag']}}</td>
                 <td class='who'> {{log['host']}}</td>
                 </tr>

@@ -12,7 +12,8 @@ from threading import Timer
 
 bottle.debug(True)
 
-#try this again
+os.environ['TZ'] = 'Europe/Berlin'
+
 
 connString = os.environ['OPENSHIFT_MONGODB_HA_DB_HOST1'] + ":" + os.environ['OPENSHIFT_MONGODB_HA_DB_PORT1'] + "," + \
              os.environ['OPENSHIFT_MONGODB_HA_DB_HOST2'] + ":" + os.environ['OPENSHIFT_MONGODB_HA_DB_PORT2'] + "," + \

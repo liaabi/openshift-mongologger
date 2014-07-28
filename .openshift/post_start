@@ -1,1 +1,2 @@
-wget -q -O /dev/null pythonlog-demo.hapaas-openshift-new.aocloud.eu
+echo "Start logging"
+wget -q -O /dev/null pythonlog2-demo.hapaas-openshift-new.aocloud.eu
